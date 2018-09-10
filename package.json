@@ -2,7 +2,7 @@
   "name": "matts-components",
   "version": "0.1.0",
   "private": true,
-  "main": "./dist/src/index.js",
+  "main": "./build/dist/index.js",
   "dependencies": {
     "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-info": "^3.4.10",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "build": "tsc",
     "test1": "react-scripts-ts test --env=jsdom",
     "test": "jest",
     "eject": "react-scripts-ts eject",
