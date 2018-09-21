@@ -1,4 +1,6 @@
 const path = require("path");
+const include = path.resolve(__dirname, '../src');
+
 const genDefaultConfig = require("@storybook/react/dist/server/config/defaults/webpack.config.js");
 
 module.exports = (baseConfig, env) => {
@@ -8,6 +10,7 @@ module.exports = (baseConfig, env) => {
         {
             test: /\.tsx?$/,
             exclude: path.resolve(__dirname, "../node_modules"),
+            include,
             use: [
                 require.resolve("ts-loader"),
                 require.resolve("react-docgen-typescript-loader"),
@@ -15,9 +18,26 @@ module.exports = (baseConfig, env) => {
         },
         {
             test: /\.scss$/,
-            loaders: ["style-loader", "css-loader", "sass-loader"],
-            include: path.resolve(__dirname, "../src")
+            use: [
+                "style-loader",
+                "css-loader",
+                {
+                    loader: "sass-loader",
+                    options: {
+                        modules: true,
+                        sourceMap: true,
+                        includePaths: [
+                            include,
+                            // path.resolve(__dirname, '../node_modules/foundation-sites/scss'),
+                            // path.resolve(__dirname, '../node_modules/foundation-sites/scss/util'),
+                            path.resolve(__dirname, '../node_modules'),
+                        ]
+                    }
+                }
+            ],
+            include
         }
+
     );
 
     config.resolve.extensions.push(".ts", ".tsx");

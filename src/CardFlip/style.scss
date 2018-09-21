@@ -1,0 +1,62 @@
+$animation-transition: 0.5s;
+
+.card-flip {
+    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+
+    &.is-flipped {
+        .card-flipper {
+            animation: flipCard $animation-transition linear both;
+        }
+    }
+
+    .card-flipper {
+        transform-style: preserve-3d;
+        animation: flipCardInverse $animation-transition linear both;
+    }
+
+    .card-wrapper {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        &.active {
+            position: static;
+        }
+    }
+
+    .card-back {
+        transform: rotateX(180deg);
+    }
+}
+
+@keyframes flipCard {
+    0% {
+        transform: rotateX(0);
+    }
+
+    70% {
+        transform: rotateX(200deg);
+    }
+
+    100% {
+        transform: rotateX(180deg);
+    }
+}
+
+@keyframes flipCardInverse {
+    0% {
+        transform: rotateX(180deg);
+    }
+
+    70% {
+        transform: rotateX(-20deg);
+    }
+
+    100% {
+        transform: rotateX(0);
+    }
+}

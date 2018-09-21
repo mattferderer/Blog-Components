@@ -1,0 +1,15 @@
+@import "../_Styles/settings";
+@import "~foundation-sites/scss/components/button";
+@import "../_Styles/Effects/ripple.scss";
+@include foundation-button;
+
+button {
+
+    //override Foundation border
+    &.button {
+      border: none;
+    }
+
+    @include Ripple;
+
+}

@@ -15,6 +15,9 @@ module.exports = {
         "json",
         "node"
     ],
+    "moduleNameMapper": {
+        "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+    },
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
     "testURL": "http://localhost"
